@@ -17,6 +17,7 @@ class Lexer:
     print('input string: ', self.input)
     while self.pointer < len(self.input):
       char = self.input[self.pointer]
+      print("scanning char: ", char)
 
       if char in ['{', '}', '[', ']', ':', ',']:
         self.handle_single_character(char)
@@ -50,10 +51,9 @@ class Lexer:
   
   def handle_number(self):
     start = self.pointer
-    while self.pointer < len(self.input):
-      
-      if self.input[self.pointer].isdigit() or self.input[self.pointer] == '-':
-        self.pointer += 1
+    while self.pointer < len(self.input) and self.input[self.pointer].isdigit() or self.input[self.pointer] == '-':
+      print("scanning digit: ", self.input[self.pointer])
+      self.pointer += 1
       # pointer is pointer one index beyond the last digit
       number = self.input[start:self.pointer]
       self.tokens.append(Token('NUMBER', number))
@@ -65,6 +65,7 @@ class Lexer:
     self.pointer += 1
     string_contents = []
     while self.pointer < len(self.input) and self.input[self.pointer] != '"':
+      print("char: ", self.input[self.pointer])
       if self.input[self.pointer] == '\\' or self.input[self.pointer] == '\r' or self.input[self.pointer] == '\n':
         # upon invalid character, just ignore it
         self.pointer += 1
@@ -82,8 +83,6 @@ class Lexer:
   def handle_keyword(self):
     print("skipping keyword for now")
     pass
-
-
 
 def main():
   print("Hello, World!")
