@@ -56,7 +56,7 @@ class Lexer:
       self.pointer += 1
       # pointer is pointer one index beyond the last digit
       number = self.input[start:self.pointer]
-      self.tokens.append(Token('NUMBER', number))
+    self.tokens.append(Token('NUMBER', number))
   
   def handle_string(self):
     # starts at '"'
