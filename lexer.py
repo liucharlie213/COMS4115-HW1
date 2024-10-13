@@ -97,14 +97,17 @@ class Lexer:
     
     print('num str: ', num_str)
     
-    all_zeros = True
+    non_zero = False
     if is_neg:
       for i in range(1, len(num_str)):
+        print(num_str[i])
         if num_str[i] != '0' or num_str[i] != '.':
-          all_zeros = False
-          break
+          print(num_str[i])
+          non_zero = True
+
+    print(non_zero)
     
-    if is_neg and all_zeros:
+    if is_neg and not non_zero:
       num_str.popleft()
       
     # if len(num_str) == 2 and num_str[0] == '-' and num_str[1] == '0':
@@ -155,7 +158,7 @@ class Lexer:
 
 def main():
   print("Hello, World!")
-  lexer = Lexer('{"name": "John", "bool": true, "age": -000.0.4, "city": "Montana" "Montana" }')
+  lexer = Lexer('{"name": "John", "bool": true, "age": -.9, "city": "Montana" "Montana" }')
   tokens = lexer.scan()
   print(tokens)      
 
