@@ -1,4 +1,5 @@
 from collections import deque
+import sys
 class Token:
   def __init__(self, type, value):
     self.type = type
@@ -15,10 +16,10 @@ class Lexer:
 
   def scan(self):
     # print("IM SCANNING")
-    print('input string: ', self.input)
+    # print('input string: ', self.input)
     while self.pointer < len(self.input):
       char = self.input[self.pointer]
-      print("scanning char: ", char)
+      # print("scanning char: ", char)
 
       if char in ['{', '}', '[', ']', ':', ',']:
         self.handle_single_character(char)
@@ -31,13 +32,16 @@ class Lexer:
       
       elif char == '"':
         self.handle_string()
+
       elif char.isalpha():
         self.handle_keyword()
+
       elif char.isspace():
         self.pointer += 1
-      else:
-        # explore this more
+      
+      else: # print(f'Invalid character \'{self.input[self.pointer]}\' at index {self.pointer}')
         self.handle_error()
+        return
 
     return self.tokens
   
@@ -57,7 +61,7 @@ class Lexer:
   def handle_number(self, is_neg=False):
     num_str = deque()
     decimal = False
-    print("hello")
+    # print("hello")
     if is_neg:
       num_str.append('-')
       self.pointer += 1
@@ -82,7 +86,6 @@ class Lexer:
           self.pointer += 1
         
         else:
-          print("hi")
           num_str.append(self.input[self.pointer])
           self.pointer += 1
     
@@ -95,17 +98,17 @@ class Lexer:
       while num_str[0] == '0' and len(num_str) > 1 and num_str[1] != '.':
         num_str.popleft()
     
-    print('num str: ', num_str)
+    # print('num str: ', num_str)
     
     non_zero = False
     if is_neg:
       for i in range(1, len(num_str)):
-        print(num_str[i])
+        # print(num_str[i])
         if num_str[i] != '0' or num_str[i] != '.':
-          print(num_str[i])
+          # print(num_str[i])
           non_zero = True
 
-    print(non_zero)
+    # print(non_zero)
     
     if is_neg and not non_zero:
       num_str.popleft()
@@ -143,22 +146,27 @@ class Lexer:
       if self.input[self.pointer].isalpha():
         keyword_str.append(self.input[self.pointer])
       self.pointer += 1
-    print(keyword_str)
+    # print(keyword_str)
     keyword = ''.join(keyword_str)
     if keyword in ['true', 'false', 'null']:
       self.tokens.append(Token('KEYWORD', keyword))
     else:
-      self.handle_error(type="KEYWORD", value=keyword)
+      self.handle_error(type="KEYWORD")
+      print("hiiiiii there")
+      return
     
-  def handle_error(self, type=None, value=None):
+  def handle_error(self, type=None):
     print(self.tokens)
-    if type and value:
-      raise Exception(f'Invalid {type}: {value}')
-    raise Exception(f'Invalid character \'{self.input[self.pointer]}\' at index {self.pointer}')
+    if type:
+      print(f'\nInvalid {type} at index {self.pointer}\n')
+    else:
+      print(f'\nInvalid character \'{self.input[self.pointer]}\' at index {self.pointer}\n')
+    sys.exit(1)
 
 def main():
-  print("Hello, World!")
-  lexer = Lexer('{"name": "John", "bool": true, "age": -.9, "city": "Montana" "Montana" }')
+  lexer = Lexer(sys.argv[1])
+  
+  # lexer = Lexer('{ "name": "John Doe", "age": 000030, "grades": [85.7, 002.9, -078, -005.89, 000] }')
   tokens = lexer.scan()
   print(tokens)      
 
