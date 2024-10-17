@@ -3,7 +3,7 @@
 ## Lexical Grammar
 
 LBRACE = {\
-RBRACE = }\ 
+RBRACE = }\
 LBRACK = [\
 RBRACK = ]\
 COLON = :\
