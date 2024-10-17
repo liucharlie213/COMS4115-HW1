@@ -14,12 +14,10 @@ class Lexer:
     self.pointer = 0
     self.tokens = []
 
+
   def scan(self):
-    # print("IM SCANNING")
-    # print('input string: ', self.input)
     while self.pointer < len(self.input):
       char = self.input[self.pointer]
-      # print("scanning char: ", char)
 
       if char in ['{', '}', '[', ']', ':', ',']:
         self.handle_single_character(char)
@@ -39,7 +37,7 @@ class Lexer:
       elif char.isspace():
         self.pointer += 1
       
-      else: # print(f'Invalid character \'{self.input[self.pointer]}\' at index {self.pointer}')
+      else: 
         self.handle_error()
         return
 
@@ -61,7 +59,7 @@ class Lexer:
   def handle_number(self, is_neg=False):
     num_str = deque()
     decimal = False
-    # print("hello")
+
     if is_neg:
       num_str.append('-')
       self.pointer += 1
@@ -97,35 +95,23 @@ class Lexer:
     else:
       while num_str[0] == '0' and len(num_str) > 1 and num_str[1] != '.':
         num_str.popleft()
-    
-    # print('num str: ', num_str)
-    
+        
     non_zero = False
     if is_neg:
       for i in range(1, len(num_str)):
-        # print(num_str[i])
         if num_str[i] != '0' or num_str[i] != '.':
-          # print(num_str[i])
           non_zero = True
-
-    # print(non_zero)
     
     if is_neg and not non_zero:
       num_str.popleft()
-      
-    # if len(num_str) == 2 and num_str[0] == '-' and num_str[1] == '0':
-    #   num_str.popleft()
   
     self.tokens.append(Token('NUMBER', ''.join(num_str)))
   
   def handle_string(self):
-    # starts at '"'
-    # print("handling string")
-    start = self.pointer
+    # iterate past starting quote
     self.pointer += 1
     string_contents = []
     while self.pointer < len(self.input) and self.input[self.pointer] != '"':
-      # print("char: ", self.input[self.pointer])
       if self.input[self.pointer] == '\\' or self.input[self.pointer] == '\r' or self.input[self.pointer] == '\n':
         # upon invalid character, just ignore it
         self.pointer += 1
@@ -135,24 +121,27 @@ class Lexer:
         string_contents.append(self.input[self.pointer])
         self.pointer += 1
 
-    # print("string: ", ''.join(string_contents))
     self.pointer += 1 # skip the closing pointer
 
     self.tokens.append(Token('STRING', ''.join(string_contents)))
   
   def handle_keyword(self):
     keyword_str = []
+
+    # iterate through keyword
     while self.pointer < len(self.input) and self.input[self.pointer].isalpha() or self.input[self.pointer].isspace() or self.input[self.pointer].isdigit():
+      # upon valid character, append
       if self.input[self.pointer].isalpha():
         keyword_str.append(self.input[self.pointer])
       self.pointer += 1
-    # print(keyword_str)
+
     keyword = ''.join(keyword_str)
+
+    # check if valid keyword
     if keyword in ['true', 'false', 'null']:
       self.tokens.append(Token('KEYWORD', keyword))
     else:
       self.handle_error(type="KEYWORD")
-      print("hiiiiii there")
       return
     
   def handle_error(self, type=None):
@@ -164,9 +153,8 @@ class Lexer:
     sys.exit(1)
 
 def main():
+  # read input string from command line
   lexer = Lexer(sys.argv[1])
-  
-  # lexer = Lexer('{ "name": "John Doe", "age": 000030, "grades": [85.7, 002.9, -078, -005.89, 000] }')
   tokens = lexer.scan()
   print(tokens)      
 
