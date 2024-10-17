@@ -21,7 +21,7 @@ Whitespaces = don’t even tokenize, are ignored
 
 ## Script Instructions
 
-chmod XXX script.sh
+chmod 755 script.sh if necessary
 Run ./script.sh                 
 
 ## Teammates:
