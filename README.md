@@ -2,14 +2,12 @@
 
 ## Lexical Grammar
 
-LBRACE = {
-RBRACE = }
-
-LBRACK = [
-RBRACK = ]
-
-COLON = :
-COMMA = ,
+LBRACE = {\
+RBRACE = }\ 
+LBRACK = [\
+RBRACK = ]\
+COLON = :\
+COMMA = ,\
 
 STRING = “[^”\\\r\n]*” = double quotes, anything BUT what follows ^, double quotes
 
@@ -37,6 +35,6 @@ Sample 5: If the input string has a random alphanumerical character placed in an
 
 ## Teammates:
 
-Charles Liu CRL2157
+Charles Liu CRL2157\
 Markus Tran HT2573
 
