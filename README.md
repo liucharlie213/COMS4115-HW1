@@ -13,7 +13,7 @@ STRING = “[^”\\\r\n]*” = double quotes, anything BUT what follows ^, doubl
 
 NUMBER = -?(0 | [1-9][0-9]*)(\.[0-9]+)? = integers, decimals, negatives and no leading 0s 
 
-KEYWORDS = true | false | null
+KEYWORD = true | false | null
 
 Whitespaces = don’t even tokenize, are ignored
 
