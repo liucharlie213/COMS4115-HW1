@@ -155,8 +155,8 @@ class Lexer:
 def main():
   # read input string from command line
   lexer = Lexer(sys.argv[1])
-  tokens = lexer.scan()
-  print(tokens)      
+  # tokens = lexer.scan()
+  # print(tokens)      
 
 main()
   
