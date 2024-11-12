@@ -23,6 +23,8 @@ chmod 755 script.sh if necessary
 
 Run ./script.sh      
 
+### HW Part 1:
+
 Sample 1: Completely valid input to show the different token types
 
 Sample 2: KEYWORDS contain a few non-alphabetical errors to show that the lexer just skips past the non-alphabetical error and repairs the keyword
@@ -33,26 +35,38 @@ Sample 4: Leading 0s are also not allowed in NUMBER tokens so the lexer will tru
 
 Sample 5: If the input string has a random alphanumerical character placed in an invalid position the lexer will report the valid tokens tokenized up to that error index and then report the error neatly
 
+### HW Part 2:
+
+Sample 1: Completely valid input to show a AST populated with a variety of data types
+
+Sample 2: JSON objects are populated using key-value pair elements, which are separated by commas. When duplicate commas are found between key-value pairs, the parser eats them up and builds an error-handled AST
+
+Sample 3: Trailing commas that appear behind the final key-value pair element in a JSON object is also processed by the parser and the an error-handled AST is built.
+
+Sample 4: Key-value pairs are separated by colons. When duplicate colons are found within key-value pairs, the parse processees then and builds an error-handled AST
+
+Sample 5: Array value elements are separated by commas. When these commas are missing, the parser deliminates by space and builds an error-handled AST
+
 # COMS4115-HW2
 
 ## CFG
-Nontermals: 
-JSON
-Object
-Members
-Pair
-Value
+Nontermals:\
+JSON\
+Object\
+Members\
+Pair\
+Value\
 
 Terminals:
-LBRACE = {
-RBRACE = }
-LBRACK = [
-RBRACK = ]
-COLON = :
-COMMA = ,
-STRING = as defined in lexical grammar
-NUMBER = as defined in lexical grammar
-KEYWORDS = true, false, null
+LBRACE = {\
+RBRACE = }\
+LBRACK = [\
+RBRACK = ]\
+COLON = :\
+COMMA = ,\
+STRING = as defined in lexical grammar\
+NUMBER = as defined in lexical grammar\
+KEYWORDS = true, false, null\
 
 JSON → Object
 
