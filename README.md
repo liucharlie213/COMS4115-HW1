@@ -114,3 +114,9 @@ members = [(name, john doe)]
 [<LBRACE, {>, <STRING, name>, <COLON, :>, <STRING, John Doe>, <COMMA, ,>, <STRING, grades>, <COLON, :>, <LBRACK, [>, <NUMBER, 85>, <COMMA, ,>, <NUMBER, 90>, <COMMA, ,>, <NUMBER, 78>, <RBRACK, ]>, <COMMA, ,>, <STRING, address>, <COLON, :>, <LBRACE, {>, <STRING, street>, <COLON, :>, <STRING, 123 Main St>, <RBRACE, }>, <RBRACE, }>]
 
 {"name":"john", "grades":[85, 95], "address":{"street":"123 Mott"}}
+
+
+handled:
+- duplicate commas, trailing commas (elements)
+- duplicate colons (pair)
+- missing commas within arrays
