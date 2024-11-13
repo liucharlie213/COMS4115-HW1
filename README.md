@@ -38,6 +38,8 @@ Sample 5: If the input string has a random alphanumerical character placed in an
 
 # COMS4115-HW2
 
+Walkthrough video: https://youtu.be/AoaUlBJCehU
+
 ### Samples Part 2:
 
 Sample 1: Completely valid input to show a AST populated with a variety of data types
