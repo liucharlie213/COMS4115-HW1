@@ -23,7 +23,7 @@ chmod 755 script.sh if necessary
 
 Run ./script.sh      
 
-### HW Part 1:
+### Samples Part 1:
 
 Sample 1: Completely valid input to show the different token types
 
@@ -35,7 +35,10 @@ Sample 4: Leading 0s are also not allowed in NUMBER tokens so the lexer will tru
 
 Sample 5: If the input string has a random alphanumerical character placed in an invalid position the lexer will report the valid tokens tokenized up to that error index and then report the error neatly
 
-### HW Part 2:
+
+# COMS4115-HW2
+
+### Samples Part 2:
 
 Sample 1: Completely valid input to show a AST populated with a variety of data types
 
@@ -47,15 +50,13 @@ Sample 4: Key-value pairs are separated by colons. When duplicate colons are fou
 
 Sample 5: Array value elements are separated by commas. When these commas are missing, the parser deliminates by space and builds an error-handled AST
 
-# COMS4115-HW2
-
 ## CFG
 Nontermals:\
 JSON\
 Object\
 Members\
 Pair\
-Value\
+Value
 
 Terminals:
 LBRACE = {\
@@ -70,67 +71,29 @@ KEYWORDS = true, false, null\
 
 JSON → Object
 
-Object → LBRACE RBRACE
+Object → LBRACE RBRACE\
 Object → LBRACE Members RBRACE
 
-Members → Pair
+Members → Pair\
 Members → Pair COMMA Members
 
 Pair → STRING COLON Value
 
-Value → STRING
-Value → NUMBER
-Value → Object
-Value → Array
-Value → true
-Value → false
+Value → STRING\
+Value → NUMBER\
+Value → Object\
+Value → Array\
+Value → true\
+Value → false\
 Value → null
 
-Array → LBRACK RBRACK
+Array → LBRACK RBRACK\
 Array → LBRACK Elements RBRACK
 
-Elements → Value
+Elements → Value\
 Elements → Value COMMA Elements
 
 ## Teammates:
 
 Charles Liu CRL2157\
 Markus Tran HT2573
-
-TOKENS:
-<LBRACE, {>, 
-<STRING, name>, 
-<COLON, :>, 
-<STRING, John Doe>, 
-<COMMA, ,>, 
-<STRING, grades>, 
-<COLON, :>, 
-<LBRACK, [>, 
-<NUMBER, 85>, 
-<COMMA, ,>, 
-<NUMBER, 90>, 
-<COMMA, ,>, 
-<NUMBER, 78>, 
-<RBRACK, ]>, 
-<COMMA, ,>, 
-<STRING, address>, 
-<COLON, :>, 
-<LBRACE, {>, 
-<STRING, street>, 
-<COLON, :>, 
-<STRING, 123 Main St>,
-<RBRACE, }>
-<RBRACE, }>
-
-positions = 4
-members = [(name, john doe)]
-
-[<LBRACE, {>, <STRING, name>, <COLON, :>, <STRING, John Doe>, <COMMA, ,>, <STRING, grades>, <COLON, :>, <LBRACK, [>, <NUMBER, 85>, <COMMA, ,>, <NUMBER, 90>, <COMMA, ,>, <NUMBER, 78>, <RBRACK, ]>, <COMMA, ,>, <STRING, address>, <COLON, :>, <LBRACE, {>, <STRING, street>, <COLON, :>, <STRING, 123 Main St>, <RBRACE, }>, <RBRACE, }>]
-
-{"name":"john", "grades":[85, 95], "address":{"street":"123 Mott"}}
-
-
-handled:
-- duplicate commas, trailing commas (elements)
-- duplicate colons (pair)
-- missing commas within arrays
