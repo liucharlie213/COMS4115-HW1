@@ -1,19 +1,37 @@
+# HW PART 3
+printf "\nSample 1: Completely Valid Input\n\n"
+python code_generator.py '{"name": "John Doe", "age": 30,"isStudent": false, "grades": [85, 90, 78],  "address": { "street": "123 Main St",   "city": "Anytown"}}'
+
+printf "\nSample 2: Handling Duplicate Commas between Key-Value Pairs\n\n"
+python code_generator.py '{"name": "John Doe",,, "age": 30,,, "isStudent": false}'
+
+printf "\nSample 3: Handling Miscallaneous Alphanumerical Characters Placed in Invalid Position:\n"
+python code_generator.py '{ "name": "John Doe",  "age": 30a0,  "isStudent": false,  "grades": [85, 90, 78]}'
+
+printf "\nSample 4: Handling Missing Colons in JSON Objects\n\n"
+python code_generator.py '{"name": "John Doe", "age" 30}'
+
+printf "\nSample 5: Handling Missing Comma's in Array Values\n\n"
+python code_generator.py '{"name": "John Doe", "age": 30, "grades": [86 94 100]}'
+
+# printf "\n Sample 5: "
+# python code_generator.py ''
+
 # HW PART 2
+# printf "\nSample 1 Input: Completely Valid Input\n\n"
+# python parser.py '{"name": "John Doe", "age": 30,"isStudent": false, "grades": [85, 90, 78],  "address": { "street": "123 Main St",   "city": "Anytown"}}'
 
-printf "\nSample 1 Input: Completely Valid Input\n\n"
-python parser.py '{"name": "John Doe", "age": 30,"isStudent": false, "grades": [85, 90, 78],  "address": { "street": "123 Main St",   "city": "Anytown"}}'
+# printf "\nSample 2 Input: Handling Duplicate Commas between Key-Value Pairs\n\n"
+# python parser.py '{"name": "John Doe",,, "age": 30,,, "isStudent": false}'
 
-printf "\nSample 2 Input: Handling Duplicate Commas between Key-Value Pairs\n\n"
-python parser.py '{"name": "John Doe",,, "age": 30,,, "isStudent": false}'
+# printf "\nSample 3 Input: Handling Trailing Commas after Key-Value Pairs\n\n"
+# python parser.py '{"name": "John Doe","age": 30,,,,,}'
 
-printf "\nSample 3 Input: Handling Trailing Commas after Key-Value Pairs\n\n"
-python parser.py '{"name": "John Doe","age": 30,,,,,}'
+# printf "\nSample 4 Input: Handling Duplicate Colon's between Key and Value in Pairs\n\n"
+# python parser.py '{"name":::"John Doe", "age"::::30, "isStudent": false}'
 
-printf "\nSample 4 Input: Handling Duplicate Colon's between Key and Value in Pairs\n\n"
-python parser.py '{"name":::"John Doe", "age"::::30, "isStudent": false}'
-
-printf "\nSample 5 Input: Handling Missing Comma's in Array Values\n\n"
-python parser.py '{"name": "John Doe", "age": 30, "grades": [86 94 100]}'
+# printf "\nSample 5 Input: Handling Missing Comma's in Array Values\n\n"
+# python parser.py '{"name": "John Doe", "age": 30, "grades": [86 94 100]}'
 
 # HW PART 1 
 # printf "\nSample 1 Input: Completely Valid Input\n"

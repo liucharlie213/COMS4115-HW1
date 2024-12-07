@@ -52,7 +52,6 @@ class Lexer:
       ':': 'COLON',
       ',': 'COMMA',
     }[char]
-
     self.tokens.append(Token(token_type, char))
     self.pointer += 1
   
@@ -104,8 +103,13 @@ class Lexer:
     
     if is_neg and not non_zero:
       num_str.popleft()
-  
-    self.tokens.append(Token('NUMBER', ''.join(num_str)))
+
+    num_str = "".join(num_str)
+    if '.' in num_str:
+      self.tokens.append(Token('NUMBER', float(num_str)))
+    else:
+      self.tokens.append(Token('NUMBER', int(num_str)))
+    # self.tokens.append(Token('NUMBER', ''.join(num_str)))
   
   def handle_string(self):
     # iterate past starting quote
@@ -139,18 +143,19 @@ class Lexer:
 
     # check if valid keyword
     if keyword in ['true', 'false', 'null']:
+      keyword = True if keyword == 'true' else False if keyword == 'false' else None
       self.tokens.append(Token('KEYWORD', keyword))
     else:
       self.handle_error(type="KEYWORD")
       return
     
   def handle_error(self, type=None):
-    print(self.tokens)
     if type:
-      print(f'\nInvalid {type} at index {self.pointer}\n')
+      print(f'\nInvalid {type} at index {self.pointer} in lexing phase\n')
     else:
-      print(f'\nInvalid character \'{self.input[self.pointer]}\' at index {self.pointer}\n')
-    sys.exit(1)
+      print(f'\nInvalid character \'{self.input[self.pointer]}\' at index {self.pointer} in lexing phase\n')
+    print(f"Error in lexing phase, printing valid tokens: '{self.tokens}'\n")
+    # sys.exit(1)
 
 def main():
   # read input string from command line

@@ -19,7 +19,8 @@ class PairNode(ASTNode):
 
 class ValueNode(ASTNode):
     def __init__(self, value):
-        self.value = value  # Could be STRING, NUMBER, BOOLEAN, NULL, ObjectNode, or ArrayNode
+        # Could be STRING, NUMBER, BOOLEAN, NULL, ObjectNode, or ArrayNode
+        self.value = value
 
 def print_tree(node, indent=0):
     prefix = " " * (indent * 2)
@@ -40,7 +41,7 @@ def print_tree(node, indent=0):
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
-        self.position = 0  # Tracks current token position
+        self.position = 0
 
     def current_token(self):
         return self.tokens[self.position]
@@ -50,19 +51,20 @@ class Parser:
         pos = self.position + offset
         if pos < len(self.tokens):
             return self.tokens[pos]
-        return None  # End of tokens
+        return None  
 
     def consume(self, expected_type=None):      
         token = self.current_token()
         if expected_type and token.type != expected_type:
-            raise SyntaxError(f"A Expected {expected_type}, found {token.type}")
+            raise SyntaxError(f"A Expected {expected_type}, found {token.type} in parsing phase")
             
         self.position += 1
         return token
 
     def parse(self):
         if self.current_token().type == "LBRACE":
-            return self.parse_object()  # JSON always starts with an Object in our CFG
+            # JSON always starts with an Object in our CFG
+            return self.parse_object()  
         else:
             raise SyntaxError("JSON must start with an object")
   
@@ -90,7 +92,7 @@ class Parser:
         # print("HI: ", self.current_token(), self.current_token().type)
         if self.current_token() and self.current_token().type not in ("COMMA", "RBRACE"):
             # print("in error: ", self.current_token().type)
-            raise SyntaxError(f"B Expected ',' or '}}' after key-value pair, found {self.current_token().type}")
+            raise SyntaxError(f"B Expected ',' or '}}' after key-value pair, found {self.current_token().type} in parsing phase")
 
         return members
 
@@ -124,7 +126,7 @@ class Parser:
 
         # Lookahead to ensure no extra comma at the end of the object
         if self.current_token() and self.current_token().type not in ("COMMA", "RBRACK"):
-            raise SyntaxError(f"Expected ',' or ']' after array element, found {self.lookahead().type}")
+            raise SyntaxError(f"Expected ',' or ']' after array element, found {self.lookahead().type} in parsing phase")
 
         return elements
 
@@ -144,17 +146,19 @@ class Parser:
             self.consume(token.type)
             return ValueNode(token.value)
         else:
-            raise SyntaxError(f"Unexpected token {token.type}")
+            raise SyntaxError(f"Unexpected token {token.type} in parsing phase")
 
-def main():
-    # Read input string from command line
-    lexer = Lexer(sys.argv[1])
-    tokens = lexer.scan()
-    parser = Parser(tokens)
-    try:
-        ast = parser.parse()
-        print_tree(ast)
-    except SyntaxError as e:
-        print(f"Syntax Error: {e}")
+# def main():
+#     # Read input string from command line
+#     print("hello")
+#     lexer = Lexer(sys.argv[1])
+#     tokens = lexer.scan()
+#     print("tokens: ", tokens)
+#     parser = Parser(tokens)
+#     try:
+#         ast = parser.parse()
+#         # print_tree(ast)
+#     except SyntaxError as e:
+#         print(f"Syntax Error: {e}")
 
-main()
+# main()
