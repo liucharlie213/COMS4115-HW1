@@ -13,6 +13,7 @@ python code_generator.py '{"name": "John Doe", "age" 30}'
 
 printf "\nSample 5: Handling Missing Comma's in Array Values\n\n"
 python code_generator.py '{"name": "John Doe", "age": 30, "grades": [86 94 100]}'
+printf "\n"
 
 # printf "\n Sample 5: "
 # python code_generator.py ''
