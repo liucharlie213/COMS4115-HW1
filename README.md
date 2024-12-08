@@ -96,6 +96,12 @@ Elements → Value\
 Elements → Value COMMA Elements
 
 # COMS4115 - HW3
+
+## Walkthrough Video
+
+https://youtu.be/nzsXmUaP7i4
+
+### Samples Part 3
 Sample 1: Completely Valid Input to show how an AST with various data types and nesting is generated as a dictionary
 
 Sample 2: Duplicate commas are deleted and then the dictionary is generated as intended
