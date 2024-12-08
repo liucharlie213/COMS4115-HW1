@@ -95,6 +95,19 @@ Array → LBRACK Elements RBRACK
 Elements → Value\
 Elements → Value COMMA Elements
 
+# COMS4115 - HW3
+Sample 1: Completely Valid Input to show how an AST with various data types and nesting is generated as a dictionary
+
+Sample 2: Duplicate commas are deleted and then the dictionary is generated as intended
+
+Sample 3: Tokens are formed up to the alphanumerical positional error, the error is reported, then the dictionary is still generated with the error corrected
+
+Sample 4: If a JSON object key-value pair is missing a comma, the parsing error is reported and no dictionary is generated
+
+Sample 5: If an array value in a JSON objects' key-value pair is missing its deliminating commas, the commas are added and the dictionary is generated with the error handled
+
+Sample 6: If a JSON object has duplicate key-value pairs, the duplicate pair is eliminated and the dictionary is generated with unique key-value pairs
+
 ## Teammates:
 
 Charles Liu CRL2157\

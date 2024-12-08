@@ -10,9 +10,14 @@ python code_generator.py '{ "name": "John Doe",  "age": 30a0,  "isStudent": fals
 
 printf "\nSample 4: Handling Missing Colons in JSON Objects\n\n"
 python code_generator.py '{"name": "John Doe", "age" 30}'
+printf "\n"
 
 printf "\nSample 5: Handling Missing Comma's in Array Values\n\n"
 python code_generator.py '{"name": "John Doe", "age": 30, "grades": [86 94 100]}'
+printf "\n"
+
+printf "\nSample 6: Duplicate JSON Object Key-Value Pairs\n\n"
+python code_generator.py '{"name": "John Doe", "age": 30, "age" : 30}'
 printf "\n"
 
 # printf "\n Sample 5: "

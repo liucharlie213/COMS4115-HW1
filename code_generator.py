@@ -50,21 +50,24 @@ class CodeGenerator:
         else:
             # retain other values
             return node.value  
+    
 
+# def print_tree(node, indent=0):
+#         prefix = " " * (indent * 2)
+#         if isinstance(node, ObjectNode):
+#             print(f"{prefix}ObjectNode")
+#             for member in node.members:
+#                 print_tree(member, indent + 1)
+#         elif isinstance(node, ArrayNode):
+#             print(f"{prefix}ArrayNode")
+#             for element in node.elements:
+#                 print_tree(element, indent + 1)
+#         elif isinstance(node, PairNode):
+#             print(f"{prefix}PairNode: {node.key}")
+#             print_tree(node.value, indent + 1)
+#         elif isinstance(node, ValueNode):
+#             print(f"{prefix}ValueNode: {node.value}")
 
-# def main():
-#     lexer = Lexer(sys.argv[1])
-#     try:
-#         tokens = lexer.scan()
-#         # print("tokens", tokens)
-#         parser = Parser(tokens)
-#         ast = parser.parse()
-
-#         code_generator = CodeGenerator()
-#         result = code_generator.convert(ast)
-#         print(result)  
-#     catch:
-#         print(f"Syntax Error: {e}")
 
 def main():
     lexer = Lexer(sys.argv[1])
@@ -72,6 +75,7 @@ def main():
         tokens = lexer.scan()
         parser = Parser(tokens)
         ast = parser.parse()
+        # print_tree(ast)
 
         code_generator = CodeGenerator()
         result = code_generator.convert(ast)
